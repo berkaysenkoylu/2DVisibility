@@ -22,36 +22,26 @@ scene.drawVisibilityTriangles('#00f', point, visibility);
 
 
 
-
-
-
-
-
 const move = (point) => {
-    //endpoints = loadMap(polygonPoints, point);
-    //visibility = calculateVisibility(point, endpoints);
+    endpoints = loadMap(polygonPoints, point);
+    visibility = calculateVisibility(point, endpoints);
 
     requestAnimationFrame(() => {
         ctx.clearRect(-10000, -10000, 20000, 20000);
-        scene.drawPolygon(polygonPoints);
-        
-        
+        scene.drawPolygon(polygonPoints, '#000');
 
-        //scene.drawVisibilityTriangles('#00f', point, visibility);
-        //point.drawLine(ctx, polygonPoints[j][0], polygonPoints[j][1]);
-            
+        scene.drawVisibilityTriangles('#00f', point, visibility);  
     });
 };
 
 canvas.addEventListener('mousemove', ({pageX, pageY}) => {
     // Add a circle or sth to represent the agent
     // Point
-    point = Point(pageX, pageY);
+    let point = Point(pageX, pageY);
     //var point = new Point([pageX, pageY])
 
     move(point);
 });
-
 
 
 

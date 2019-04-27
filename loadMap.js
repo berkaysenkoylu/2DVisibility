@@ -22,7 +22,7 @@ function makeSegmentsFromCorners(cornerObject) {
                                  cornerObject["corner " + (i + 1)].x, cornerObject["corner " + (i + 1)].y);
         segments.push(newSegment);
     }
-
+    
     return [...segments];
 }
 
@@ -34,8 +34,8 @@ function calculateEndpointAngles(cursor, segment) {
     
     segment.d = (dx * dx) + (dy * dy);
 
-    segment.p1.angle = Math.atan2(segment.p1.y - y, segment.p1.x - x) * (180 / Math.PI);
-    segment.p2.angle = Math.atan2(segment.p2.y - y, segment.p2.x - x) * (180 / Math.PI);
+    segment.p1.angle = Math.atan2(segment.p1.y - y, segment.p1.x - x);
+    segment.p2.angle = Math.atan2(segment.p2.y - y, segment.p2.x - x);
 }
 
 // Function to set the segment beginning
