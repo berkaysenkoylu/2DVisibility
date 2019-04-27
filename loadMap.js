@@ -6,7 +6,7 @@ function getCorners(vertexList) {
     corners = {};
     index = 0;
     vertexList.forEach(vertex => {
-        corners['corner ' + index] = vertex;
+        corners["corner " + index] = vertex;
         index++;
     });
     
@@ -18,7 +18,8 @@ function makeSegmentsFromCorners(cornerObject) {
     segments = [];
 
     for(var i = 0; i < Object.keys(cornerObject).length - 1; i++) {
-        let newSegment = Segment(...cornerObject["corner " + i], ...cornerObject["corner " + (i + 1)]);
+        let newSegment = Segment(cornerObject["corner " + i].x, cornerObject["corner " + i].y, 
+                                 cornerObject["corner " + (i + 1)].x, cornerObject["corner " + (i + 1)].y);
         segments.push(newSegment);
     }
 
