@@ -16,14 +16,14 @@ let point = Point(polygonCentroid.x, polygonCentroid.y);
 let endpoints = segmentatePolygon(polygonPoints, point);
 let visibility = calculateVisibility(point, endpoints);
 
-scene.drawScene(polygonPoints, point, visibility, '#000', '#00F');
+scene.drawScene(polygonPoints, point, visibility, '#0066FF', '#383838');
 
 const move = (point) => {
     endpoints = segmentatePolygon(polygonPoints, point);
     visibility = calculateVisibility(point, endpoints);
 
     requestAnimationFrame(() => {
-        scene.drawScene(polygonPoints, point, visibility, '#000', '#00F');
+        scene.drawScene(polygonPoints, point, visibility, '#0066FF', '#383838');
     });
 };
 

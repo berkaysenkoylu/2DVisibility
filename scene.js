@@ -14,7 +14,7 @@ function Scene(ctx) {
         
         if (strokeColor != null && strokeColor != undefined){
             this.ctx.strokeStyle = strokeColor;
-            this.ctx.lineWidth = 3;
+            this.ctx.lineWidth = 2;
             this.ctx.stroke();
         }
 
@@ -40,10 +40,10 @@ function Scene(ctx) {
         this.ctx.strokeStyle = color;
         for(var i = 0; i < visibilityOutput.length; i++){
             let [p1, p2] = visibilityOutput[i];
-            this.ctx.moveTo(point.x, point.x);
+            this.ctx.moveTo(point.x, point.y);
             this.ctx.lineTo(p1.x, p1.y);
             this.ctx.lineTo(p2.x, p2.y);
-            //this.ctx.fill();
+            this.ctx.fill();
             this.ctx.closePath();
             this.ctx.stroke();
         }
