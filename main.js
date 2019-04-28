@@ -11,34 +11,26 @@ polygonPoints = polygon.sortAngularly();
 
 // Create a scene object and draw the polygon
 var scene = new Scene(ctx);
-scene.drawPolygon(polygonPoints);
 
 let point = Point(polygonCentroid.x, polygonCentroid.y);
+let endpoints = segmentatePolygon(polygonPoints, point);
+let visibility = calculateVisibility(point, endpoints);
 
-var endpoints = loadMap(polygonPoints, point);
-var visibility = calculateVisibility(point, endpoints);
-
-scene.drawVisibilityTriangles('#00f', point, visibility);
-
-
+scene.drawScene(polygonPoints, point, visibility, '#000', '#00F');
 
 const move = (point) => {
-    endpoints = loadMap(polygonPoints, point);
+    endpoints = segmentatePolygon(polygonPoints, point);
     visibility = calculateVisibility(point, endpoints);
 
     requestAnimationFrame(() => {
-        ctx.clearRect(-10000, -10000, 20000, 20000);
-        scene.drawPolygon(polygonPoints, '#000');
-
-        scene.drawVisibilityTriangles('#00f', point, visibility);  
+        scene.drawScene(polygonPoints, point, visibility, '#000', '#00F');
     });
 };
 
 canvas.addEventListener('mousemove', ({pageX, pageY}) => {
     // Add a circle or sth to represent the agent
     // Point
-    let point = Point(pageX, pageY);
-    //var point = new Point([pageX, pageY])
+    point = Point(pageX, pageY);
 
     move(point);
 });

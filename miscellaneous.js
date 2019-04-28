@@ -75,7 +75,7 @@ function getSegmentEndpoints(segment) {
 // Function to create a segment from a given list of polygon and 
 // create the associated line segments, with all the necessary information
 // (see types.js)
-function loadMap(polygonPoints, cursorPoint) {
+function segmentatePolygon(polygonPoints, cursorPoint) {
     const segments = makeSegmentsFromCorners(getCorners(polygonPoints));
 
     const processedSegments = processSegments(cursorPoint, segments);

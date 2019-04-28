@@ -37,7 +37,7 @@ function Scene(ctx) {
 
     this.drawVisibilityTriangles = function(color, point, visibilityOutput) {
         this.ctx.save();
-        ctx.strokeStyle = color;
+        this.ctx.strokeStyle = color;
         for(var i = 0; i < visibilityOutput.length; i++){
             let [p1, p2] = visibilityOutput[i];
             this.ctx.moveTo(point.x, point.x);
@@ -49,6 +49,12 @@ function Scene(ctx) {
         }
         this.ctx.restore();
     };
+
+    this.drawScene = function(pointsArray, point, visibility, polygonColor, triangleColor) {
+        this.ctx.clearRect(-10000, -10000, 20000, 20000);
+        this.drawPolygon(pointsArray, polygonColor);
+        this.drawVisibilityTriangles(triangleColor, point, visibility);
+    }
 }
 
 // this.drawPolygon = function(pointsArray, fillColor="#F00", strokeColor="#000") {

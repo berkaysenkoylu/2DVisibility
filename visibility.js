@@ -6,15 +6,15 @@ function getTrianglePoints(origin, angle1, angle2, segment) {
     const p4 = Point(0, 0);
   
     if (segment) {
-      p3.x = segment.p1.x;
-      p3.y = segment.p1.y;
-      p4.x = segment.p2.x;
-      p4.y = segment.p2.y;
+        p3.x = segment.p1.x;
+        p3.y = segment.p1.y;
+        p4.x = segment.p2.x;
+        p4.y = segment.p2.y;
     } else {
-      p3.x = origin.x + Math.cos(angle1) * 200;
-      p3.y = origin.y + Math.sin(angle1) * 200;
-      p4.x = origin.x + Math.cos(angle2) * 200;
-      p4.y = origin.y + Math.sin(angle2) * 200;
+        p3.x = origin.x + Math.cos(angle1) * 200;
+        p3.y = origin.y + Math.sin(angle1) * 200;
+        p4.x = origin.x + Math.cos(angle2) * 200;
+        p4.y = origin.y + Math.sin(angle2) * 200;
     }
   
     const pBegin = lineIntersection(p3, p4, p1, p2);
