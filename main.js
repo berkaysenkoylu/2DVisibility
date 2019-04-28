@@ -34,17 +34,3 @@ canvas.addEventListener('mousemove', ({pageX, pageY}) => {
 
     move(point);
 });
-
-
-
-// Experimental
-// polygon.drawPolygon('#F00');
-//https://www.redblobgames.com/articles/visibility/
-//https://github.com/berkaysenkoylu/2d-visibility/blob/master/src/drawScene.js
-//https://stackoverflow.com/questions/4839993/how-to-draw-polygons-on-an-html5-canvas
-
-// for(var j=0; j < polygonPoints.length-1; j++){
-        //     let vertexPoint = Point(polygonPoints[j].x, polygonPoints[j].y);
-
-        //     scene.drawSegment("#000", {p1: point, p2: vertexPoint});
-        // }

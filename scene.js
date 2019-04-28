@@ -9,14 +9,14 @@ function Scene(ctx) {
         this.ctx.moveTo(pointsArray[0].x, pointsArray[0].y);
 
         for (var i = 0; i < pointsArray.length-1; i++) {
-            this.drawSegment('#000', { p1: pointsArray[i], p2: pointsArray[i+1] });
+            this.drawSegment(strokeColor, { p1: pointsArray[i], p2: pointsArray[i+1] });
         }
         
-        if (strokeColor != null && strokeColor != undefined){
-            this.ctx.strokeStyle = strokeColor;
-            this.ctx.lineWidth = 2;
-            this.ctx.stroke();
-        }
+        // if (strokeColor != null && strokeColor != undefined){
+        //     this.ctx.strokeStyle = strokeColor;
+        //     //this.ctx.lineWidth = 2;
+        //     this.ctx.stroke();
+        // }
 
         if (fillColor != null && fillColor != undefined) {
             this.ctx.fillStyle = fillColor;
@@ -27,7 +27,11 @@ function Scene(ctx) {
     this.drawSegment = function(color, {p1, p2}) {
         this.ctx.save();
         this.ctx.beginPath();
-        this.ctx.strokeStyle = 'black';
+        if (color){
+            this.ctx.strokeStyle = color;
+        } else {
+            this.ctx.strokeStyle = 'black';
+        }
         this.ctx.moveTo(p1.x, p1.y);
         this.ctx.lineTo(p2.x, p2.y);
         this.ctx.closePath();
@@ -56,25 +60,3 @@ function Scene(ctx) {
         this.drawVisibilityTriangles(triangleColor, point, visibility);
     }
 }
-
-// this.drawPolygon = function(pointsArray, fillColor="#F00", strokeColor="#000") {
-//     if (pointsArray.length <= 0) 
-//         return;
-
-//     this.ctx.moveTo(pointsArray[0][0], pointsArray[0][1]);
-
-//     for (var i = 0; i < pointsArray.length; i++) {
-//         this.ctx.lineTo(pointsArray[i][0], pointsArray[i][1]);
-//     }
-
-//     if (strokeColor != null && strokeColor != undefined){
-//         this.ctx.strokeStyle = strokeColor;
-//         this.ctx.lineWidth = 3;
-//         this.ctx.stroke();
-//     }
-
-//     if (fillColor != null && fillColor != undefined) {
-//         this.ctx.fillStyle = fillColor;
-//         //this.ctx.fill();
-//     }
-// };
