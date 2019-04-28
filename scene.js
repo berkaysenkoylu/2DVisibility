@@ -57,6 +57,25 @@ function Scene(ctx) {
     this.drawScene = function(pointsArray, point, visibility, polygonColor, triangleColor) {
         this.ctx.clearRect(-10000, -10000, 20000, 20000);
         this.drawPolygon(pointsArray, polygonColor);
-        this.drawVisibilityTriangles(triangleColor, point, visibility);
+
+        // Check if the mouse cursor is in the polygon
+        if (this.pointInPolygon(pointsArray, point) === true) {
+            this.drawVisibilityTriangles(triangleColor, point, visibility);
+        }
+    }
+
+    this.pointInPolygon = function(pointsArray, point) {
+        let i = 0;
+        let j = 0;
+        let c = 0;
+
+        for (i = 0, j = pointsArray.length - 1; i < pointsArray.length; j = i++) {
+            if (((pointsArray[i].y > point.y) !== (pointsArray[j].y > point.y)) && 
+                (point.x < (pointsArray[j].x - pointsArray[i].x) * (point.y - pointsArray[i].y) / (pointsArray[j].y - pointsArray[i].y) + pointsArray[i].x)) {
+                    c = !c;
+                }
+        }
+
+        return c;
     }
 }

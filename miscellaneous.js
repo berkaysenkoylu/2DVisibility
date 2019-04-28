@@ -84,3 +84,44 @@ function segmentatePolygon(polygonPoints, cursorPoint) {
 
     return endpoints;
 }
+
+// function obtainData() {
+//     let data;
+//     document.getElementById('import').onclick = function() {
+//         var files = document.getElementById('fileInput').files;
+//         if (files.length <= 0) {
+//             return false;
+//         }
+    
+//         var fr = new FileReader();
+    
+//         fr.onload = function(e) { 
+//             var result = JSON.parse(e.target.result);
+//             var formatted = JSON.stringify(result, null, 2);
+//             data = fr.result;
+//         }
+    
+//         fr.readAsText(files.item(0));
+//     };
+//     return data;
+// }
+
+// let data;
+// window.onload = function() {
+//     document.getElementById('import').onclick = function() {
+//         var files = document.getElementById('fileInput').files;
+//         if (files.length <= 0) {
+//             return false;
+//         }
+    
+//         var fr = new FileReader();
+    
+//         fr.onload = function(e) { 
+//             var result = JSON.parse(e.target.result);
+//             var formatted = JSON.stringify(result, null, 2);
+//             data = fr.result;
+//         }
+    
+//         fr.readAsText(files.item(0));
+//     };
+// }
