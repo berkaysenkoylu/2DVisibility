@@ -57,6 +57,7 @@ function calculateVisibility(origin, endpoints) {
                 beginAngle = endpoint.angle;
             }
         }
+        console.log("pass " + pass + ": " + openSegments.keys);
     }
     
     return output;
