@@ -1,7 +1,9 @@
+// Scene object where drawing line segments, polygons and visibility triangles reside
 function Scene(ctx) {
 
     this.ctx = ctx;
 
+    // Method for drawing a polygon, given its vertex array, fill color and stroke color
     this.drawPolygon = function(pointsArray, fillColor, strokeColor="#000") {
         if (pointsArray.length <= 0) 
             return;
@@ -11,12 +13,6 @@ function Scene(ctx) {
         for (var i = 0; i < pointsArray.length-1; i++) {
             this.drawSegment(strokeColor, { p1: pointsArray[i], p2: pointsArray[i+1] });
         }
-        
-        // if (strokeColor != null && strokeColor != undefined){
-        //     this.ctx.strokeStyle = strokeColor;
-        //     //this.ctx.lineWidth = 2;
-        //     this.ctx.stroke();
-        // }
 
         if (fillColor != null && fillColor != undefined) {
             this.ctx.fillStyle = fillColor;
@@ -24,6 +20,7 @@ function Scene(ctx) {
         }
     };
 
+    // Method for drawing a segment from point 1 (p1) to point 2 (p2)
     this.drawSegment = function(color, {p1, p2}) {
         this.ctx.save();
         this.ctx.beginPath();
@@ -39,11 +36,12 @@ function Scene(ctx) {
         this.ctx.restore();
     };
 
-    this.drawVisibilityTriangles = function(color, point, visibilityOutput) {
+    // Method for drwaing a visibility triangles, visibilityInfo is an array of the array of two points such as [[p1, p2], ...]
+    this.drawVisibilityTriangles = function(color, point, visibilityInfo) {
         this.ctx.save();
         this.ctx.strokeStyle = color;
-        for(var i = 0; i < visibilityOutput.length; i++){
-            let [p1, p2] = visibilityOutput[i];
+        for(var i = 0; i < visibilityInfo.length; i++){
+            let [p1, p2] = visibilityInfo[i];
             this.ctx.moveTo(point.x, point.y);
             this.ctx.lineTo(p1.x, p1.y);
             this.ctx.lineTo(p2.x, p2.y);
@@ -54,6 +52,7 @@ function Scene(ctx) {
         this.ctx.restore();
     };
 
+    // Method for drawing the scene given polygon vertices, point, visibility, and color informations
     this.drawScene = function(pointsArray, point, visibility, polygonColor, triangleColor) {
         this.ctx.clearRect(-10000, -10000, 20000, 20000);
         this.drawPolygon(pointsArray, polygonColor);
@@ -64,6 +63,7 @@ function Scene(ctx) {
         }
     }
 
+    // Method for checking if a given point resides within the polygon with given vertices
     this.pointInPolygon = function(pointsArray, point) {
         let i = 0;
         let j = 0;
