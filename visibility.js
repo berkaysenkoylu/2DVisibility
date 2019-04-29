@@ -1,7 +1,7 @@
 // Function to obtain the triangle points to be used to draw a visibility triangle
 // It is just firing two rays from origin with angles: angle1 and angle2 and 
 // find the intersection points from those two rays with the segment, and 
-// those two points and the point of interest will be the triangle.
+// those two points and the point of interest will be the triangle
 function getTrianglePoints(origin, angle1, angle2, segment) {
     const p1 = origin;
     const p2 = Point(origin.x + Math.cos(angle1), origin.y + Math.sin(angle1));  
@@ -76,6 +76,7 @@ function calculateVisibility(origin, endpoints) {
                 beginAngle = endpoint.angle;
             }
         }
+        
     }
     return outputTrianglePoints;
 }
