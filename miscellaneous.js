@@ -34,15 +34,10 @@ function makeSegmentsFromCorners(cornerObject) {
     return [...segments];
 }
 
-// Function to calculate the angles between point of interest (the point object) 
-// and each of the endpoints of the segments, as well as the distance between
-// the median point of two endpoints of a segment and the point of interest
+// Function to calculate the angles between point of interest
+// and each of the endpoints of the segments
 function calculateEndpointAngles(pointOfInterest, segment) {
     const { x, y } = pointOfInterest;
-    const dx = 0.5 * (segment.p1.x + segment.p2.x) - x;
-    const dy = 0.5 * (segment.p1.y + segment.p2.y) - y;
-    
-    segment.d = (dx * dx) + (dy * dy);
 
     segment.p1.angle = Math.atan2(segment.p1.y - y, segment.p1.x - x);
     segment.p2.angle = Math.atan2(segment.p2.y - y, segment.p2.x - x);
@@ -109,7 +104,7 @@ function lineIntersection(point1, point2, point3, point4) {
 };
 
 // Function to check if segment lies left of a given point
-function segmentLeftOfPoint(segment, point) {
+function pointLeftOfSegment(segment, point) {
     const cross = (segment.p2.x - segment.p1.x) * (point.y - segment.p1.y)
                 - (segment.p2.y - segment.p1.y) * (point.x - segment.p1.x);
     return cross < 0;
@@ -123,14 +118,14 @@ function interpolate(pointA, pointB, f) {
     );
 };
 
-// Function to check if a segment is in front of another one with respect to a relative point
+// Function to check if segmentA is in front of segmentB with respect to a relative point
 function segmentInFrontOf(segmentA, segmentB, relativePoint) {
-    const A1 = segmentLeftOfPoint(segmentA, interpolate(segmentB.p1, segmentB.p2, 0.01));
-    const A2 = segmentLeftOfPoint(segmentA, interpolate(segmentB.p2, segmentB.p1, 0.01));
-    const A3 = segmentLeftOfPoint(segmentA, relativePoint);
-    const B1 = segmentLeftOfPoint(segmentB, interpolate(segmentA.p1, segmentA.p2, 0.01));
-    const B2 = segmentLeftOfPoint(segmentB, interpolate(segmentA.p2, segmentA.p1, 0.01));
-    const B3 = segmentLeftOfPoint(segmentB, relativePoint);
+    const A1 = pointLeftOfSegment(segmentA, interpolate(segmentB.p1, segmentB.p2, 0.01));
+    const A2 = pointLeftOfSegment(segmentA, interpolate(segmentB.p2, segmentB.p1, 0.01));
+    const A3 = pointLeftOfSegment(segmentA, relativePoint);
+    const B1 = pointLeftOfSegment(segmentB, interpolate(segmentA.p1, segmentA.p2, 0.01));
+    const B2 = pointLeftOfSegment(segmentB, interpolate(segmentA.p2, segmentA.p1, 0.01));
+    const B3 = pointLeftOfSegment(segmentB, relativePoint);
 
     if (B1 === B2 && B2 !== B3) return true;
     if (A1 === A2 && A2 === A3) return true;
@@ -142,7 +137,7 @@ function segmentInFrontOf(segmentA, segmentB, relativePoint) {
 
 // Function to compare the two endpoints of a segment in terms of 
 // the info: angle and whether or not one begins the segment
-function endpointComparison(pointA, pointB) {
+function endpointAngleComparison(pointA, pointB) {
     if (pointA.angle > pointB.angle) return 1;
     if (pointA.angle < pointB.angle) return -1;
     if (!pointA.beginsSegment && pointB.beginsSegment) return 1;

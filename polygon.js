@@ -1,7 +1,9 @@
+// Polygon object with vertices and centroid attributes
 function Polygon() {
     this.vertices = [];
     this.centroid = Point(0, 0);
 
+    // Method responsible for generating random vertices
     this.generateRandomPolygonVertices = function(vertexNumber=5) {
         let count = 0;
         while(count < vertexNumber) {
@@ -21,6 +23,7 @@ function Polygon() {
         return this.vertices;
     }
 
+    // Method to find centroid of the polygon
     this.findCentroid = function() {
         for(let i = 0; i < this.vertices.length; i++) {
             this.centroid.x += this.vertices[i].x;
@@ -33,6 +36,7 @@ function Polygon() {
         return this.centroid;
     }
 
+    // Method the sort the vertices of polygon with respect to its centroid point
     this.sortAngularly = function() {
         this.vertices.sort((a, b) => {
             var a1 = this.toDegrees(Math.atan2(a.x - this.centroid.x, a.y - this.centroid.y) + 360) % 360;
@@ -48,6 +52,7 @@ function Polygon() {
         return this.vertices;
     }
 
+    // Method to convert radians to degrees
     this.toDegrees = function(angle) {
         return Math.PI * angle / 180;
     }

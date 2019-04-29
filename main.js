@@ -10,8 +10,9 @@ const ctx = canvas.getContext('2d');
 // If file is null, then draw the polygon randomly
 // Setup the random polygon points and order them angularly
 var polygonPoints = [];
+var polygonVertexCount = 20;
 var polygon = new Polygon();
-polygonPoints = polygon.generateRandomPolygonVertices(20);
+polygonPoints = polygon.generateRandomPolygonVertices(polygonVertexCount);
 
 var polygonCentroid = polygon.findCentroid();
 polygonPoints = polygon.sortAngularly();
