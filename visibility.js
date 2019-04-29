@@ -52,6 +52,7 @@ function calculateVisibility(origin, endpoints) {
                     segment = openSegments[index]
                 }
 
+                // Sorting in terms of the distance between segments to the point
                 if (!segment) {
                     // If segment is null, put the endpoint.segment at the end of the array
                     openSegments.push(endpoint.segment);
