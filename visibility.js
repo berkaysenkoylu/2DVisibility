@@ -19,9 +19,11 @@ function getTrianglePoints(origin, angle1, angle2, segment) {
 }
 
 // Function to calculate the visibility, which returns visibility triangle points.
-// There are two passes. In the first pass, openSegments array will be populated,
-// and in the second one, segments continue to be collected and also triangle points,
-// will be collected in such a way that, 
+// There are two passes. In the first pass, openSegments array will be populated as 
+// the ray from point object hits the starting endpoint, and removed if it hits non starting
+// end point. As the array of open segments is populated, its contents are also sorted 
+// based on their proximity to the point object. In the second one, segments continue
+// to be collected and checked which one is in front of which one, forming the triangle points array
 function calculateVisibility(origin, endpoints) {
     let openSegments = [];
     let outputTrianglePoints = [];
